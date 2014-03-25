@@ -1,0 +1,15 @@
+{
+  "name": "x-tag-core",
+  "description": "X-Tag core library for creating custom as defined by the w3c Web Components spec.",
+  "version": "0.9.5",
+  "keywords": [
+    "web-components",
+    "core",
+    "library",
+    "x-tag"
+  ],
+  "main": [
+    "lib/web-components-polyfills.js",
+    "src/core.js"
+  ]
+}
