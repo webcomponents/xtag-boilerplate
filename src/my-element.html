@@ -7,6 +7,9 @@
 
 <script>
     (function(window, document, undefined) {
+        // Refers to the "importer", which is index.html
+        var thatDoc = document;
+
         // Refers to the "importee", which is src/my-element.html
         var thisDoc = document.currentScript.ownerDocument;
 
@@ -48,7 +51,7 @@
                     this.shadowRoot.innerHTML = '';
 
                     // Adds a template clone into shadow root
-                    var clone = template.cloneNode(true);
+                    var clone = thatDoc.importNode(template, true);
                     this.shadowRoot.appendChild(clone);
                 }
             }
