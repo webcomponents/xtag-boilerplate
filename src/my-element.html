@@ -16,6 +16,9 @@
         xtag.register('my-element', {
             lifecycle: {
                 created: function() {
+                    // Caches <strong> DOM query
+                    this.strong = template.querySelector('strong');
+
                     this.uiSetName();
                 },
                 attributeChanged: function() {
@@ -36,8 +39,7 @@
             methods: {
                 uiSetName: function() {
                     // Sets name value into <strong>
-                    var strong = template.querySelector('strong');
-                    strong.textContent = this.name;
+                    this.strong.textContent = this.name;
 
                     // Verifies if shadow root already exists
                     if (this.root) {
