@@ -6,50 +6,52 @@
 </template>
 
 <script>
-    // Refers to the "importee", which is src/my-element.html
-    var thisDoc = document.currentScript.ownerDocument;
+    (function(window, document, undefined) {
+        // Refers to the "importee", which is src/my-element.html
+        var thisDoc = document.currentScript.ownerDocument;
 
-    // Gets content from <template>
-    var template = thisDoc.querySelector('template').content;
+        // Gets content from <template>
+        var template = thisDoc.querySelector('template').content;
 
-    xtag.register('my-element', {
-        lifecycle: {
-            created: function() {
-                this.uiSetName();
-            },
-            attributeChanged: function() {
-                this.uiSetName();
-            }
-        },
-        accessors: {
-            name: {
-                attribute: {},
-                get: function(){
-                    return this.getAttribute('name') || "World"
+        xtag.register('my-element', {
+            lifecycle: {
+                created: function() {
+                    this.uiSetName();
                 },
-                set: function(value){
-                    this.xtag.data.name = value;
+                attributeChanged: function() {
+                    this.uiSetName();
+                }
+            },
+            accessors: {
+                name: {
+                    attribute: {},
+                    get: function(){
+                        return this.getAttribute('name') || "World"
+                    },
+                    set: function(value){
+                        this.xtag.data.name = value;
+                    }
+                }
+            },
+            methods: {
+                uiSetName: function() {
+                    // Sets name value into <strong>
+                    var strong = template.querySelector('strong');
+                    strong.textContent = this.name;
+
+                    // Verifies if shadow root already exists
+                    if (this.root) {
+                        this.root.innerHTML = '';
+                    }
+                    else {
+                        this.root = this.createShadowRoot();
+                    }
+
+                    // Adds a template clone into shadow root
+                    var clone = template.cloneNode(true);
+                    this.root.appendChild(clone);
                 }
             }
-        },
-        methods: {
-            uiSetName: function() {
-                // Sets name value into <strong>
-                var strong = template.querySelector('strong');
-                strong.textContent = this.name;
-
-                // Verifies if shadow root already exists
-                if (this.root) {
-                    this.root.innerHTML = '';
-                }
-                else {
-                    this.root = this.createShadowRoot();
-                }
-
-                // Adds a template clone into shadow root
-                var clone = template.cloneNode(true);
-                this.root.appendChild(clone);
-            }
-        }
-    });
+        });
+    })(window, document);
 </script>
