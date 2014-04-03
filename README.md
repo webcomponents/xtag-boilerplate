@@ -1,4 +1,4 @@
-# &lt;my-element&gt;
+# &lt;my-element&gt; ![Bower Version](https://badge.fury.io/bo/x-tag-boilerplate.svg)
 
 > TODO: Write a project description
 
