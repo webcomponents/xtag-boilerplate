@@ -1,5 +1,5 @@
 <!-- Import X-Tag -->
-<script src="../bower_components/x-tag-core/src/core.js"></script>
+<script src="../../x-tag-core/src/core.js"></script>
 
 <template>
     <p>Hello <strong></strong></p>
@@ -11,7 +11,7 @@
         var thatDoc = document;
 
         // Refers to the "importee", which is src/my-element.html
-        var thisDoc = document.currentScript.ownerDocument;
+        var thisDoc = document._currentScript.ownerDocument;
 
         // Gets content from <template>
         var template = thisDoc.querySelector('template').content;
