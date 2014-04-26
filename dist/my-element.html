@@ -1,60 +1,25 @@
 <!-- Import X-Tag -->
 <script src="../../x-tag-core/src/core.js"></script>
 
-<template>
-    <p>Hello <strong></strong></p>
-</template>
-
 <script>
-    (function(window, document, undefined) {
-        // Refers to the "importer", which is index.html
-        var thatDoc = document;
+(function() {
+    xtag.register('my-element', {
+        lifecycle: {
+            // Fires when an instance of the element is created
+            created: function() {},
 
-        // Refers to the "importee", which is src/my-element.html
-        var thisDoc = document._currentScript.ownerDocument;
+            // Fires when an instance was inserted into the document
+            inserted: function() {},
 
-        // Gets content from <template>
-        var template = thisDoc.querySelector('template').content;
+            // Fires when an instance was removed from the document
+            removed: function() {},
 
-        xtag.register('my-element', {
-            lifecycle: {
-                created: function() {
-                    // Caches <strong> DOM query
-                    this.strong = template.querySelector('strong');
-
-                    // Creates the shadow root
-                    this.shadowRoot = this.createShadowRoot();
-
-                    this.uiSetName();
-                },
-                attributeChanged: function() {
-                    this.uiSetName();
-                }
-            },
-            accessors: {
-                name: {
-                    attribute: {},
-                    get: function(){
-                        return this.getAttribute('name') || "World"
-                    },
-                    set: function(value){
-                        this.xtag.data.name = value;
-                    }
-                }
-            },
-            methods: {
-                uiSetName: function() {
-                    // Sets name value into <strong>
-                    this.strong.textContent = this.name;
-
-                    // Removes shadow root content
-                    this.shadowRoot.innerHTML = '';
-
-                    // Adds a template clone into shadow root
-                    var clone = thatDoc.importNode(template, true);
-                    this.shadowRoot.appendChild(clone);
-                }
-            }
-        });
-    })(window, document);
+            // Fires when an attribute was added, removed, or updated
+            attributeChanged: function(attr, oldVal, newVal) {}
+        },
+        events: {},
+        accessors: {},
+        methods: {}
+    });
+}());
 </script>
