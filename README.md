@@ -2,6 +2,8 @@
 
 > A bare minimum custom element starter-kit using [X-Tag](http://x-tags.org/).
 >
+> Like [Yeoman](http://yeoman.io/)? Use the [generator-element](https://www.npmjs.org/package/generator-element) instead.
+>
 > Looking for a working example? Check [hello-world-xtag](https://github.com/webcomponents/hello-world-xtag).
 
 ## Demo
