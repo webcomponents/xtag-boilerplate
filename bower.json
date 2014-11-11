@@ -14,7 +14,7 @@
         "bower_components"
     ],
     "dependencies": {
-        "platform": "Polymer/platform#^0.4.1",
+        "webcomponentsjs": "Polymer/webcomponentsjs#^0.5.0",
         "x-tag-core": "~0.9.7"
     }
 }
